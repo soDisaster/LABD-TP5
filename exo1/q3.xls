@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- New document created with EditiX at Thu Feb 12 11:41:09 CET 2015 -->
+
+<xsl:stylesheet version="2.0" 
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:fn="http://www.w3.org/2005/xpath-functions"
+	xmlns:xdt="http://www.w3.org/2005/xpath-datatypes"
+	xmlns:err="http://www.w3.org/2005/xqt-errors"
+	exclude-result-prefixes="xs xdt err fn">
+
+	<xsl:output method="html" indent="yes"/>
+	
+	<xsl:template match="/">
+		<html>
+			<body>
+				<h3>Les clubs de Ligue 1 <br/> <br/> saison 
+        				<xsl:value-of select="(/championnat/@annee)-1"/>-<xsl:value-of select="/championnat/@annee"/> </h3>
+				<table border="1" >
+					<tr>
+						<td align="center"><b> ville</b></td>
+						<td align="center"><b>club</b></td>
+					</tr>
+					<xsl:apply-templates select="//club"/>
+				</table>
+			</body>
+		</html>
+	</xsl:template>
+	<xsl:template match="club">
+		<tr>
+					
+			<td>
+				<xsl:value-of select="ville"/> 
+			</td>
+			<td>
+				<xsl:value-of select="nom"/>
+			</td>
+		</tr>
+	</xsl:template>
+
+</xsl:stylesheet>
